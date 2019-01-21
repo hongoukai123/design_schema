@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: kai-dubbo-provide1
+
+server:
+  port: 7070
+
+dubbo:
+  registry:
+    protocol: zookeeper
+    address: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+    id: kai-registry-1
+  protocol:
+    port: 12345
+    name: dubbo
+    id: dubbo
+    status: server
+  application:
+    name: kai-dubbo-provide-name1
+    id: kai-dubbo-provide-id1
+    qos-enable: true
+    qos-port: 22222
+  scan:
+    base-packages: com.kai.chap.baseprovide.service
+
+hello:
+  service:
+    version: 1.0.0
