@@ -34,22 +34,28 @@ public class ShiroConfig {
         //配置拦截器
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //配置不会被拦截的连接，顺序判断
-        filterChainDefinitionMap.put("/user/logout", "logout");
+        filterChainDefinitionMap.put("/api/user/logout", "logout");
         // 配置不会被拦截的链接 顺序判断
+        filterChainDefinitionMap.put("/api/user/login","anon");
+
+        filterChainDefinitionMap.put("/**.js", "anon");
+        filterChainDefinitionMap.put("/druid/**", "anon");
+        filterChainDefinitionMap.put("/swagger**/**", "anon");
+        filterChainDefinitionMap.put("/webjars/**", "anon");
+        filterChainDefinitionMap.put("/v2/**", "anon");
+
         filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/user/login","anon");
-        filterChainDefinitionMap.put("/user/register","anon");
-        filterChainDefinitionMap.put("/user/verify/*","anon");
+        filterChainDefinitionMap.put("/api/user/register","anon");
         filterChainDefinitionMap.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/user/unauth");
+        shiroFilterFactoryBean.setLoginUrl("/api/user/unauth");
 
         //添加自己的过滤器
         Map<String, Filter> filterMap = new HashMap<String, Filter>(1);
         filterMap.put("jwt", new JwtFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
         //链接从上往下执行，一般将/**放在最下面
-        filterChainDefinitionMap.put("/**", "jwt");
+        filterChainDefinitionMap.put("/api/**", "jwt");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

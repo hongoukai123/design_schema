@@ -41,7 +41,8 @@
         <jwt.project>3.4.0</jwt.project>
         <shiro.project>1.4.0</shiro.project>
 
-        <javax-servlet.project>3.1.0</javax-servlet.project>
+        <javax-servlet.project>4.0.1</javax-servlet.project>
+        <swagger2.version>2.6.1</swagger2.version>
     </properties>
 
     <dependencyManagement>
@@ -109,6 +110,17 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${javax-servlet.project}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -21,5 +21,7 @@ public interface ResponseCode {
     Integer TOKEN_INVALID = 2007;
     //ID不能为空
     Integer ID_NOT_NULL = 2008;
+    //未登录
+    Integer NO_LOGIN = 2009;
 
 }

@@ -14,5 +14,6 @@ public interface ResponseMsg {
     String TOKEN_INVALID = "无效的token";
     String TOKEN_NULL = "token为空，请重新登录";
     String ID_NOT_NULL = "ID不能为空";
+    String NO_LOGIN = "未登录";
 
 }

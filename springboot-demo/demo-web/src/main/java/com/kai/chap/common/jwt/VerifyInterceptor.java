@@ -37,6 +37,9 @@ public class VerifyInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
+        String str = httpServletRequest.getRequestURI();
+        boolean bo = str.contains("/api/");
+        if(!bo) return true;
         // 从 http 请求头中取出 token
         String token = httpServletRequest.getHeader("token");
         // 如果不是映射到方法直接通过

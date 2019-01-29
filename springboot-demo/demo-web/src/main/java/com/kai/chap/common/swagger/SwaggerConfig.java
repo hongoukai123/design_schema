@@ -8,7 +8,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -28,26 +27,30 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api(){
-        ParameterBuilder pb = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<Parameter>();
-        pb.name("x-access-token").description("token").modelRef(new ModelRef("String")).parameterType("header").required(false).build();
-        pars.add(pb.build());
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.kai.chap.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(pars);
+                .globalOperationParameters(setHeaderToken());
     }
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("springboot-demo接口文档")
-                .description("文档对接教程")
-                .version("1.0")
-                .contact(new Contact("hok", "", "1269893661@qq.com"))
+                .title("Springboot2实例Demo接口文档")
+                .description("接口文档及接口调试平台")
+                .version("1.0.0")
+                .termsOfServiceUrl("http://terms-of-services.url")
                 .build();
+    }
+
+    private List<Parameter> setHeaderToken() {
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<>();
+        tokenPar.name("token").description("访问令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        pars.add(tokenPar.build());
+        return pars;
     }
 
 }

@@ -81,6 +81,7 @@ public class MyRealm extends AuthorizingRealm {
         if (userInfo == null){
             return null;
         }
+        //判断用户是否被禁用
         if (userInfo.getStatus().equals("1")){
             throw new LockedAccountException();
         }
